@@ -255,15 +255,52 @@ if (countEls.length) {
   }
 }
 
-// 4 · card cursor spotlight (fine pointers only)
-if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+// 4 · card cursor spotlight + 3D tilt (fine pointers only)
+const finePointer = window.matchMedia('(pointer: fine)').matches;
+if (!reduceMotion && finePointer) {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('pointermove', (e) => {
       const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
       card.style.setProperty('--mx', e.clientX - r.left + 'px');
       card.style.setProperty('--my', e.clientY - r.top + 'px');
+      card.style.transform = `perspective(900px) rotateX(${(-py * 7).toFixed(2)}deg) rotateY(${(px * 7).toFixed(2)}deg) translateY(-6px)`;
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+}
+
+// 4 · subtle cursor spotlight on step + why cards (no tilt — keeps them calm)
+if (!reduceMotion && finePointer) {
+  document.querySelectorAll('.step, .why__item').forEach((el) => {
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', e.clientX - r.left + 'px');
+      el.style.setProperty('--my', e.clientY - r.top + 'px');
     });
   });
+}
+
+// 3 · hero 3D parallax — floating shapes drift with the cursor
+const hero = document.querySelector('.hero');
+const shapes = hero ? hero.querySelectorAll('.shape') : [];
+if (!reduceMotion && finePointer && shapes.length) {
+  let raf = null, tx = 0, ty = 0;
+  const applyParallax = () => {
+    raf = null;
+    shapes.forEach((s) => {
+      const d = parseFloat(s.dataset.depth || '20');
+      s.style.transform = `translate3d(${(-tx * d).toFixed(1)}px, ${(-ty * d).toFixed(1)}px, 0)`;
+    });
+  };
+  hero.addEventListener('pointermove', (e) => {
+    const r = hero.getBoundingClientRect();
+    tx = (e.clientX - r.left) / r.width - 0.5;
+    ty = (e.clientY - r.top) / r.height - 0.5;
+    if (!raf) raf = requestAnimationFrame(applyParallax);
+  });
+  hero.addEventListener('pointerleave', () => { tx = 0; ty = 0; if (!raf) raf = requestAnimationFrame(applyParallax); });
 }
 
 // 7 · submit celebration (called from the form success branch)
@@ -291,5 +328,13 @@ function celebrate() {
     ).onfinish = () => s.remove();
   }
 }
+
+// section background videos — reveal only when a real clip loads; still on reduced motion
+document.querySelectorAll('.sec-fx__video').forEach((v) => {
+  if (reduceMotion) { try { v.pause(); } catch (e) {} return; }
+  v.addEventListener('loadeddata', () => {
+    if (v.readyState >= 2) v.closest('.sec-fx').classList.add('has-video');
+  });
+});
 
 })();
