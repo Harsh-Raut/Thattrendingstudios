@@ -16,9 +16,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=4" />
 </head>
 <body>
+
+  <!-- scroll progress (#7) -->
+  <div class="scrollbar" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- badge preloader (#7) -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <svg class="preloader__badge" viewBox="0 0 100 100" role="img" aria-label="Loading">
+      <path fill="#4358F1" d="M50 2
+        C56 2 60 8 66 7 C72 6 74 -1 80 2 C86 5 84 12 89 15 C94 18 100 15 100 22
+        C100 29 93 30 95 37 C97 44 104 45 100 51 C96 57 90 54 89 61 C88 68 94 72 89 78
+        C84 84 79 79 73 82 C67 85 67 92 60 92 C53 92 53 85 46 86 C39 87 37 94 31 90
+        C25 86 30 80 25 76 C20 72 13 75 12 68 C11 61 18 60 16 53 C14 46 7 46 10 40
+        C13 34 20 37 22 30 C24 23 18 19 23 14 C28 9 34 14 40 11 C46 8 44 2 50 2 Z"
+        transform="translate(-3,3) scale(0.98)" />
+      <text x="50" y="46" fill="#fff" font-family="Anton, sans-serif" font-size="14" text-anchor="middle">THAT</text>
+      <text x="50" y="60" fill="#9BEA91" font-family="Anton, sans-serif" font-size="15" text-anchor="middle">TS</text>
+    </svg>
+  </div>
 
   <!-- ============ NAV ============ -->
   <header class="nav" id="nav">
@@ -44,14 +62,20 @@
         </span>
       </a>
 
-      <nav class="nav__links" aria-label="Primary">
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
         <a href="#voice-test">Voice Test</a>
         <a href="#how">How it works</a>
         <a href="#packages">Packages</a>
-        <a href="#proof">Proof</a>
+        <a href="#faq">FAQ</a>
+        <a href="#enquiry" class="nav__menu-cta">Book Free Voice Test</a>
       </nav>
 
       <a href="#enquiry" class="btn btn--sm nav__cta">Book Free Voice Test</a>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -59,6 +83,8 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
     <div class="container hero__inner">
       <span class="eyebrow"><span class="dot"></span> That Trending Studio &nbsp;·&nbsp; sibling of That Trending Song</span>
       <h1 class="hero__title">
@@ -73,7 +99,10 @@
 
       <div class="hero__cta">
         <a href="#enquiry" class="btn btn--lg">🎧 Book Your Free Voice Test</a>
-        <a href="#voice-test" class="btn btn--ghost btn--lg">What's a Voice Test?</a>
+        <a href="https://wa.me/910000000000?text=Hi!%20I'd%20like%20to%20book%20a%20free%20Voice%20Test" target="_blank" rel="noopener" class="btn btn--wa btn--lg">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.11.07-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.37c.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.91 1.06.95 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.36-.23.6-.14.24.09 1.55.73 1.81.86.26.14.44.21.5.32.07.11.07.64-.17 1.32z"/></svg>
+          Book on WhatsApp
+        </a>
       </div>
 
       <p class="hero__micro">20 minutes · one short piece · no commitment · come hear what your voice really sounds like.</p>
@@ -82,6 +111,34 @@
         <span>🎙️ Record</span><span class="sep">→</span>
         <span>🎬 Film</span><span class="sep">→</span>
         <span>📺 Release on <strong>That Trending Song</strong></span>
+      </div>
+
+      <!-- Trust / proof bar (#2) — update numbers with your real stats -->
+      <div class="hero__trust" aria-label="Proof points">
+        <div class="trust__item"><strong data-count="120" data-suffix="+">120+</strong><span>singers recorded</span></div>
+        <div class="trust__sep"></div>
+        <div class="trust__item"><strong data-count="40" data-suffix="+">40+</strong><span>songs released</span></div>
+        <div class="trust__sep"></div>
+        <div class="trust__item"><strong data-count="1000000" data-compact="1" data-suffix="+">1M+</strong><span>channel views</span></div>
+        <div class="trust__sep"></div>
+        <div class="trust__item"><strong data-count="4.9" data-decimals="1" data-suffix="★">4.9★</strong><span>artist rating</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLAYBACK MOMENT VIDEO (#8) ============ -->
+  <section class="playback">
+    <div class="container">
+      <div class="playback__media" id="playbackMedia">
+        <!-- Drop a real clip at assets/playback-moment.mp4 (muted 10–20s reaction). Poster optional at assets/playback-poster.jpg -->
+        <video id="playbackVideo" autoplay muted loop playsinline preload="metadata" poster="assets/playback-poster.jpg">
+          <source src="assets/playback-moment.mp4" type="video/mp4" />
+        </video>
+        <div class="playback__overlay">
+          <span class="playback__badge">▶ The playback moment</span>
+          <p class="playback__caption">The first time they hear their own voice — properly. That's when everything changes.</p>
+          <button class="playback__sound" id="playbackSound" type="button" aria-label="Unmute video">🔊 Tap for sound</button>
+        </div>
       </div>
     </div>
   </section>
@@ -126,6 +183,13 @@
       </div>
     </div>
   </section>
+
+  <!-- waveform divider (#1) -->
+  <div class="wave-divider" aria-hidden="true">
+    <svg viewBox="0 0 2400 40" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+      <path d="M0 20 Q75 4 150 20 T300 20 T450 20 T600 20 T750 20 T900 20 T1050 20 T1200 20 T1350 20 T1500 20 T1650 20 T1800 20 T1950 20 T2100 20 T2250 20 T2400 20" />
+    </svg>
+  </div>
 
   <!-- ============ HOW IT WORKS ============ -->
   <section class="section how" id="how">
@@ -185,11 +249,11 @@
         </article>
 
         <article class="card">
-          <div class="card__price">₹1,00,000</div>
+          <div class="card__price">₹1,50,000</div>
           <h3 class="card__name">Song + Celebrity Shoot</h3>
           <p class="card__desc">Song + video shoot with a celebrity feature. The reach and credibility jump.</p>
           <span class="card__foot">Released on That Trending Song — where an audience is already waiting.</span>
-          <a href="#enquiry" class="btn btn--full" data-package="₹1,00,000 – Song + Celebrity Shoot">Enquire</a>
+          <a href="#enquiry" class="btn btn--full" data-package="₹1,50,000 – Song + Celebrity Shoot">Enquire</a>
         </article>
 
         <article class="card card--dark">
@@ -263,6 +327,80 @@
     </div>
   </section>
 
+  <!-- ============ TESTIMONIALS (#5) ============ -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section__head center">
+        <span class="kicker">Real artists</span>
+        <h2 class="section__title">They almost didn't come. Now they're released.</h2>
+      </div>
+      <div class="tcards">
+        <figure class="tcard">
+          <div class="tcard__stars">★★★★★</div>
+          <blockquote>"I thought I'd embarrass myself. The moment they played my voice back, I actually teared up. Three weeks later my song was live."</blockquote>
+          <figcaption class="tcard__by">
+            <span class="tcard__avatar" style="--a:#4358F1">R</span>
+            <span><strong>Riya S.</strong><small>First song · Studio + Video</small></span>
+          </figcaption>
+        </figure>
+        <figure class="tcard">
+          <div class="tcard__stars">★★★★★</div>
+          <blockquote>"I'd released 20 covers to almost nobody. Here it wasn't just the sound — my song actually got an audience. That changed everything for me."</blockquote>
+          <figcaption class="tcard__by">
+            <span class="tcard__avatar" style="--a:#111111">A</span>
+            <span><strong>Arjun M.</strong><small>Indie artist · Outdoor Shoot</small></span>
+          </figcaption>
+        </figure>
+        <figure class="tcard">
+          <div class="tcard__stars">★★★★★</div>
+          <blockquote>"They held my hand through every step. I walked in a nervous student and walked out feeling like a real singer with a real release."</blockquote>
+          <figcaption class="tcard__by">
+            <span class="tcard__avatar" style="--a:#25a15b">N</span>
+            <span><strong>Neha K.</strong><small>First song · Voice Test → Release</small></span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ (#3) ============ -->
+  <section class="section faq" id="faq">
+    <div class="container faq__inner">
+      <div class="section__head">
+        <span class="kicker">Questions</span>
+        <h2 class="section__title">Everything you're wondering.</h2>
+        <p class="lead">Still unsure? That's normal. Here are the things new singers ask us most.</p>
+      </div>
+
+      <div class="faq__list">
+        <details class="faq__item" open>
+          <summary>Is the Voice Test <em>really</em> free?</summary>
+          <div class="faq__a">Yes — completely. No payment, no card, no catch. You book a slot, come in, sing one short piece, and hear yourself on studio monitors. We only ask you to book so every artist gets our full attention.</div>
+        </details>
+        <details class="faq__item">
+          <summary>What if I'm not good enough?</summary>
+          <div class="faq__a">That's exactly why the Voice Test exists. Most singers have never heard themselves recorded properly. You'll be surprised — and if there's something to work on, our engineer will tell you honestly and kindly. There's zero pressure and zero judgement.</div>
+        </details>
+        <details class="faq__item">
+          <summary>Do I need any experience or my own song?</summary>
+          <div class="faq__a">No. Complete first-timers are who we love most. Sing anything you like — a cover, a few lines, a song you wrote. We'll guide the rest.</div>
+        </details>
+        <details class="faq__item">
+          <summary>What happens after the Voice Test?</summary>
+          <div class="faq__a">If you want to make a real, released song, we'll walk you through the packages (from ₹35,000) and build a plan. If you're not ready, that's totally fine — no hard sell, ever. You leave with a clip and a roadmap either way.</div>
+        </details>
+        <details class="faq__item">
+          <summary>Will my song actually get heard?</summary>
+          <div class="faq__a">That's our whole point of difference. Finished songs release on <strong>That Trending Song</strong> — a channel that already has an audience waiting. Recording is the easy half; getting heard is the part we've already solved.</div>
+        </details>
+        <details class="faq__item">
+          <summary>How do I book?</summary>
+          <div class="faq__a">Fill the short form below or message us on WhatsApp. We reply within 24 hours to lock your slot.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ ENQUIRY FORM ============ -->
   <section class="section enquiry" id="enquiry">
     <div class="container grid-2 grid-2--form">
@@ -278,6 +416,10 @@
           <li>Pick a service, or just choose the free Voice Test.</li>
           <li>Limited slots each week.</li>
         </ul>
+        <a href="https://wa.me/910000000000?text=Hi!%20I'd%20like%20to%20book%20a%20free%20Voice%20Test" target="_blank" rel="noopener" class="btn btn--wa btn--lg enquiry__wa">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.11.07-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.37c.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.91 1.06.95 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.36-.23.6-.14.24.09 1.55.73 1.81.86.26.14.44.21.5.32.07.11.07.64-.17 1.32z"/></svg>
+          Prefer WhatsApp? Message us
+        </a>
       </div>
 
       <form class="form" id="enquiryForm" novalidate>
@@ -288,40 +430,57 @@
         <!-- Honeypot spam trap -->
         <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
 
-        <div class="field">
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" placeholder="Your name" required />
+        <!-- progress -->
+        <div class="form__progress" aria-hidden="true">
+          <span class="dot active" data-dot="1"></span>
+          <span class="bar"></span>
+          <span class="dot" data-dot="2"></span>
         </div>
 
-        <div class="field">
-          <label for="phone">Phone / WhatsApp number</label>
-          <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+91 " required />
+        <!-- STEP 1 -->
+        <div class="form__step" data-step="1">
+          <p class="form__steplabel">Step 1 of 2 — who are you?</p>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="phone">Phone / WhatsApp number</label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+91 " autocomplete="tel" required />
+          </div>
+          <button type="button" class="btn btn--lg btn--full" id="toStep2">Continue →</button>
+          <p class="form__reassure">✨ No experience needed. No payment. Just come sing.</p>
         </div>
 
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="you@email.com" required />
-        </div>
+        <!-- STEP 2 -->
+        <div class="form__step hidden" data-step="2">
+          <button type="button" class="form__back" id="backStep1">← Back</button>
+          <p class="form__steplabel">Step 2 of 2 — a couple of details</p>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@email.com" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="service">Service / package you're interested in</label>
+            <select id="service" name="service" required>
+              <option value="Free Voice Test" selected>Free Voice Test</option>
+              <option value="₹35,000 – Studio Song + Video">₹35,000 – Studio Song + Video</option>
+              <option value="₹75,000 – Song + Outdoor Shoot">₹75,000 – Song + Outdoor Shoot</option>
+              <option value="₹1,50,000 – Song + Celebrity Shoot">₹1,50,000 – Song + Celebrity Shoot</option>
+              <option value="Film / Album Project (Discuss on call)">Film / Album Project (Discuss on call)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Message <span class="opt">(optional)</span></label>
+            <textarea id="message" name="message" rows="3" placeholder="Tell us about your song or what you're dreaming of…"></textarea>
+          </div>
 
-        <div class="field">
-          <label for="service">Service / package you're interested in</label>
-          <select id="service" name="service" required>
-            <option value="Free Voice Test" selected>Free Voice Test</option>
-            <option value="₹35,000 – Studio Song + Video">₹35,000 – Studio Song + Video</option>
-            <option value="₹75,000 – Song + Outdoor Shoot">₹75,000 – Song + Outdoor Shoot</option>
-            <option value="₹1,00,000 – Song + Celebrity Shoot">₹1,00,000 – Song + Celebrity Shoot</option>
-            <option value="Film / Album Project (Discuss on call)">Film / Album Project (Discuss on call)</option>
-          </select>
+          <button type="submit" class="btn btn--lg btn--full" id="submitBtn">Book My Free Voice Test</button>
+          <p class="form__reassure">✨ No experience needed. No payment. Just come sing.</p>
+          <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+          <a href="https://wa.me/910000000000?text=Hi!%20I'd%20like%20to%20book%20a%20free%20Voice%20Test" target="_blank" rel="noopener" class="btn btn--wa btn--full hidden" id="successWa">Continue on WhatsApp →</a>
+          <p class="form__fine">By submitting you agree we can contact you about your enquiry.</p>
         </div>
-
-        <div class="field">
-          <label for="message">Message <span class="opt">(optional)</span></label>
-          <textarea id="message" name="message" rows="3" placeholder="Tell us about your song or what you're dreaming of…"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn--lg btn--full" id="submitBtn">Book My Free Voice Test</button>
-        <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
-        <p class="form__fine">By submitting you agree we can contact you about your enquiry.</p>
       </form>
     </div>
   </section>
@@ -342,7 +501,7 @@
         <a href="#voice-test">Voice Test</a>
         <a href="#how">How it works</a>
         <a href="#packages">Packages</a>
-        <a href="#proof">Proof</a>
+        <a href="#faq">FAQ</a>
       </div>
 
       <div class="footer__col">
@@ -360,11 +519,21 @@
     </div>
   </footer>
 
-  <!-- Floating WhatsApp -->
+  <!-- Floating WhatsApp (desktop) -->
   <a href="https://wa.me/910000000000" class="fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
     <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.11.07-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.37c.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.91 1.06.95 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.36-.23.6-.14.24.09 1.55.73 1.81.86.26.14.44.21.5.32.07.11.07.64-.17 1.32z"/></svg>
   </a>
 
-  <script src="script.js"></script>
+  <!-- Sticky mobile CTA bar (#1) -->
+  <div class="mobilebar" id="mobilebar">
+    <a href="#enquiry" class="mobilebar__cta">🎧 Book Free Voice Test</a>
+    <a href="https://wa.me/910000000000?text=Hi!%20I'd%20like%20to%20book%20a%20free%20Voice%20Test" target="_blank" rel="noopener" class="mobilebar__wa" aria-label="Book on WhatsApp">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.11.07-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.37c.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.91 1.06.95 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.36-.23.6-.14.24.09 1.55.73 1.81.86.26.14.44.21.5.32.07.11.07.64-.17 1.32z"/></svg>
+    </a>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <script src="script.js?v=6"></script>
 </body>
 </html>
