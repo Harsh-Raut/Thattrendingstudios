@@ -98,6 +98,12 @@ h1, h2, h3, .logo__word, .card__price, .step__num {
 .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 20px; }
 
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.logo__img { display: block; height: 46px; width: auto; }
+.footer__logo { display: block; height: 72px; width: auto; margin-bottom: 4px; }
+.footer__social { display: flex; gap: 12px; margin-top: 16px; }
+.footer__social a { display: inline-flex; opacity: .85; transition: opacity .15s ease, transform .15s ease; }
+.footer__social a:hover { opacity: 1; transform: translateY(-2px); }
+.footer__social img { display: block; width: 26px; height: 26px; }
 .logo__badge { display: inline-flex; }
 .scallop { fill: var(--blue); }
 .badge__text { font-family: 'Anton', sans-serif; fill: #fff; font-size: 14px; letter-spacing: .02em; }
