@@ -103,7 +103,7 @@
 
       <div class="hero__cta">
         <a href="#enquiry" class="btn btn--lg">🎧 Book Your Free Voice Test</a>
-        <a href="https://wa.me/910000000000?text=Hi!%20I'd%20like%20to%20book%20a%20free%20Voice%20Test" target="_blank" rel="noopener" class="btn btn--wa btn--lg">
+        <a href="https://wa.me/919359719200?text=Hi!%20I'd%20like%20to%20book%20a%20free%20Voice%20Test" target="_blank" rel="noopener" class="btn btn--wa btn--lg">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.11.07-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.37c.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.91 1.06.95 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.36-.23.6-.14.24.09 1.55.73 1.81.86.26.14.44.21.5.32.07.11.07.64-.17 1.32z"/></svg>
           Book on WhatsApp
         </a>
@@ -452,17 +452,14 @@
           <li>Pick a service, or just choose the free Voice Test.</li>
           <li>Limited slots each week.</li>
         </ul>
-        <a href="https://wa.me/910000000000?text=Hi!%20I'd%20like%20to%20book%20a%20free%20Voice%20Test" target="_blank" rel="noopener" class="btn btn--wa btn--lg enquiry__wa">
+        <a href="https://wa.me/919359719200?text=Hi!%20I'd%20like%20to%20book%20a%20free%20Voice%20Test" target="_blank" rel="noopener" class="btn btn--wa btn--lg enquiry__wa">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.11.07-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.37c.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.91 1.06.95 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.36-.23.6-.14.24.09 1.55.73 1.81.86.26.14.44.21.5.32.07.11.07.64-.17 1.32z"/></svg>
           Prefer WhatsApp? Message us
         </a>
       </div>
 
       <form class="form" id="enquiryForm" novalidate>
-        <!-- Web3Forms: replace with your real access key -->
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
-        <input type="hidden" name="subject" value="New enquiry — That Trending Studio" />
-        <input type="hidden" name="from_name" value="That Trending Studio Website" />
+        <!-- Enquiries POST to a Google Apps Script → your Sheet + email (see google-apps-script.gs) -->
         <!-- Honeypot spam trap -->
         <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
 
@@ -485,7 +482,7 @@
             <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+91 " autocomplete="tel" required />
           </div>
           <button type="button" class="btn btn--lg btn--full" id="toStep2">Continue →</button>
-          <p class="form__reassure">✨ No experience needed. No payment. Just come sing.</p>
+          <p class="form__reassure">✨ No experience needed. Just come sing.</p>
         </div>
 
         <!-- STEP 2 -->
@@ -512,9 +509,9 @@
           </div>
 
           <button type="submit" class="btn btn--lg btn--full" id="submitBtn">Book My Free Voice Test</button>
-          <p class="form__reassure">✨ No experience needed. No payment. Just come sing.</p>
+          <p class="form__reassure">✨ No experience needed. Just come sing.</p>
           <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
-          <a href="https://wa.me/910000000000?text=Hi!%20I'd%20like%20to%20book%20a%20free%20Voice%20Test" target="_blank" rel="noopener" class="btn btn--wa btn--full hidden" id="successWa">Continue on WhatsApp →</a>
+          <a href="https://wa.me/919359719200?text=Hi!%20I'd%20like%20to%20book%20a%20free%20Voice%20Test" target="_blank" rel="noopener" class="btn btn--wa btn--full hidden" id="successWa">Continue on WhatsApp →</a>
           <p class="form__fine">By submitting you agree we can contact you about your enquiry.</p>
         </div>
       </form>
@@ -545,7 +542,7 @@
         <h4>Get in touch</h4>
         <a href="#enquiry">Book a Voice Test</a>
         <a href="https://www.youtube.com/@ThatTrendingSong" target="_blank" rel="noopener">That Trending Song ↗</a>
-        <a href="https://wa.me/910000000000" target="_blank" rel="noopener">WhatsApp us</a>
+        <a href="https://wa.me/919359719200" target="_blank" rel="noopener">WhatsApp us</a>
         <a href="mailto:hello@thattrendingstudio.com">Email us</a>
       </div>
     </div>
@@ -557,20 +554,20 @@
   </footer>
 
   <!-- Floating WhatsApp (desktop) -->
-  <a href="https://wa.me/910000000000" class="fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <a href="https://wa.me/919359719200" class="fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
     <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.11.07-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.37c.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.91 1.06.95 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.36-.23.6-.14.24.09 1.55.73 1.81.86.26.14.44.21.5.32.07.11.07.64-.17 1.32z"/></svg>
   </a>
 
   <!-- Sticky mobile CTA bar (#1) -->
   <div class="mobilebar" id="mobilebar">
     <a href="#enquiry" class="mobilebar__cta">🎧 Book Free Voice Test</a>
-    <a href="https://wa.me/910000000000?text=Hi!%20I'd%20like%20to%20book%20a%20free%20Voice%20Test" target="_blank" rel="noopener" class="mobilebar__wa" aria-label="Book on WhatsApp">
+    <a href="https://wa.me/919359719200?text=Hi!%20I'd%20like%20to%20book%20a%20free%20Voice%20Test" target="_blank" rel="noopener" class="mobilebar__wa" aria-label="Book on WhatsApp">
       <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.11.07-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.37c.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.91 1.06.95 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.36-.23.6-.14.24.09 1.55.73 1.81.86.26.14.44.21.5.32.07.11.07.64-.17 1.32z"/></svg>
     </a>
   </div>
 
   <div class="grain" aria-hidden="true"></div>
 
-  <script src="script.js?v=9"></script>
+  <script src="script.js?v=12"></script>
 </body>
 </html>

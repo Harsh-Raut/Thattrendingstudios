@@ -1,7 +1,8 @@
 /* ============================================================
-   That Trending Studio — interactions + enquiry-form-to-email
-   Form uses Web3Forms (https://web3forms.com). Put your access
-   key in index.html: input[name="access_key"].
+   That Trending Studio — interactions + enquiry form
+   The form POSTs to a Google Apps Script (google-apps-script.gs)
+   which saves each enquiry to the Google Sheet and emails
+   thattrendingsong@gmail.com. Set GOOGLE_SCRIPT_URL below.
    ============================================================ */
 
 (() => {
@@ -51,6 +52,10 @@ if (pbVideo && pbSound) {
 }
 
 // ---------- Two-step form (#12) ----------
+// Paste your deployed Google Apps Script Web App URL (ends in /exec) here.
+// See google-apps-script.gs for the setup steps.
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxTl_b7Tx1gQ2Rzad9hEWuO6i-YKuDtTemEJDO2TXiEqmYAYiaicMbQMonSOE0HuGjh-A/exec';
+
 const form = document.getElementById('enquiryForm');
 const step1 = form.querySelector('[data-step="1"]');
 const step2 = form.querySelector('[data-step="2"]');
@@ -98,10 +103,22 @@ document.querySelectorAll('[data-package]').forEach((el) => {
     const select = document.getElementById('service');
     if (select) {
       const match = [...select.options].find((o) => o.value === val);
-      if (match) select.value = val;
+      if (match) { select.value = val; select.dispatchEvent(new Event('change')); }
     }
   });
 });
+
+// Submit-button label reflects the selected service
+const serviceSel = document.getElementById('service');
+const updateCtaLabel = () => {
+  const v = serviceSel.value;
+  submitBtn.textContent =
+    v === 'Free Voice Test' ? 'Book My Free Voice Test'
+    : /Film \/ Album/.test(v) ? 'Request a Callback'
+    : 'Send My Enquiry';
+};
+serviceSel.addEventListener('change', updateCtaLabel);
+updateCtaLabel();
 
 // ---------- Submit → email ----------
 form.addEventListener('submit', async (e) => {
@@ -118,9 +135,8 @@ form.addEventListener('submit', async (e) => {
   if (phone.replace(/\D/g, '').length < 8) { showStep(1); form.elements.phone.focus(); return setStatus('Please enter a valid phone / WhatsApp number.', 'err'); }
   if (!isEmail(email)) { showStep(2); form.elements.email.focus(); return setStatus('Please enter a valid email address.', 'err'); }
 
-  const accessKey = form.elements.access_key.value;
-  if (!accessKey || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
-    return setStatus('Form not configured yet — add your Web3Forms access key. (See README.)', 'err');
+  if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.indexOf('YOUR_GOOGLE') === 0) {
+    return setStatus('Form not connected yet — add your Google Apps Script URL. (See google-apps-script.gs)', 'err');
   }
 
   submitBtn.disabled = true;
@@ -129,23 +145,22 @@ form.addEventListener('submit', async (e) => {
   setStatus('Sending your enquiry…', '');
 
   try {
-    const res = await fetch('https://api.web3forms.com/submit', {
+    // Apps Script web apps don't send CORS headers, so we fire-and-forget
+    // (no-cors). The POST still reaches the script, which saves the row +
+    // emails the notification. URL-encoded body → readable as e.parameter.
+    await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      mode: 'no-cors',
+      body: new URLSearchParams(new FormData(form)),
     });
-    const data = await res.json();
-
-    if (data.success) {
-      form.reset();
-      setStatus('🎉 Got it! We\'ll message you on WhatsApp within 24 hours to lock your slot.', 'ok');
-      successWa.classList.remove('hidden'); // offer instant WhatsApp handoff (#4)
-      celebrate(); // submit celebration (#7)
-    } else {
-      setStatus(data.message || 'Something went wrong. Please WhatsApp us instead.', 'err');
-    }
+    form.reset();
+    updateCtaLabel();
+    showStep(1);
+    setStatus('🎉 Got it! We\'ll message you on WhatsApp within 24 hours to lock your slot.', 'ok');
+    successWa.classList.remove('hidden'); // offer instant WhatsApp handoff (#4)
+    celebrate(); // submit celebration (#7)
   } catch (err) {
-    setStatus('Network error. Please check your connection or WhatsApp us instead.', 'err');
+    setStatus('Network error — please WhatsApp us instead so we don\'t miss you.', 'err');
   } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = originalLabel;
