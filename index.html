@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="styles.css?v=9" />
 </head>
 <body>
 
@@ -134,8 +134,9 @@
   <section class="playback">
     <div class="container">
       <div class="playback__media" id="playbackMedia">
-        <!-- Drop a real clip at assets/playback-moment.mp4 (muted 10–20s reaction). Poster optional at assets/playback-poster.jpg -->
-        <video id="playbackVideo" autoplay muted loop playsinline preload="metadata" poster="assets/playback-poster.jpg">
+        <img class="playback__img" src="assets/playback-still.jpg" alt="A singer hearing her own voice on studio headphones for the first time" />
+        <!-- Optional: drop a real clip at assets/playback-moment.mp4 (muted 10–20s reaction) to animate over the image -->
+        <video id="playbackVideo" autoplay muted loop playsinline preload="none" poster="assets/playback-still.jpg">
           <source src="assets/playback-moment.mp4" type="video/mp4" />
         </video>
         <div class="playback__overlay">
@@ -211,20 +212,20 @@
       <div class="steps">
         <div class="flowline" aria-hidden="true"></div>
         <div class="step">
+          <img class="step__img" src="assets/step-record.jpg" alt="Professional studio microphone" loading="lazy" />
           <span class="step__num">01</span>
-          <span class="step__ico">🎙️</span>
           <h3>Record</h3>
           <p>Start with your free Voice Test. When you're ready, we record your song properly — studio-grade, mixed, and mastered to release standard.</p>
         </div>
         <div class="step step--arrow">
+          <img class="step__img" src="assets/step-film.jpg" alt="An outdoor music video shoot" loading="lazy" />
           <span class="step__num">02</span>
-          <span class="step__ico">🎬</span>
           <h3>Film</h3>
           <p>Studio, AI-cinematic, outdoor, or celebrity shoot — we make your song look as big as it sounds. Pick the package that fits your dream.</p>
         </div>
         <div class="step">
+          <img class="step__img" src="assets/step-release.jpg" alt="A music video playing on a phone" loading="lazy" />
           <span class="step__num">03</span>
-          <span class="step__ico">📺</span>
           <h3>Release</h3>
           <p>Your song goes live on <strong>That Trending Song</strong> — where an audience is already waiting. Recording is the easy half. Getting heard is the part we already solved.</p>
         </div>
