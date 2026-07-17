@@ -98,7 +98,7 @@ h1, h2, h3, .logo__word, .card__price, .step__num {
 .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 20px; }
 
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
-.logo__img { display: block; height: 46px; width: auto; }
+.logo__img { display: block; height: 56px; width: auto; }
 .footer__logo { display: block; height: 72px; width: auto; margin-bottom: 4px; }
 .footer__social { display: flex; gap: 12px; margin-top: 16px; }
 .footer__social a { display: inline-flex; opacity: .85; transition: opacity .15s ease, transform .15s ease; }
@@ -205,7 +205,7 @@ h1, h2, h3, .logo__word, .card__price, .step__num {
 .valuecard__list .v { color: var(--ink); font-weight: 600; white-space: nowrap; }
 .valuecard__total { display: flex; justify-content: space-between; border-top: 2px solid var(--line); margin-top: 16px; padding-top: 14px; font-weight: 800; font-size: 17px; }
 .valuecard__price { margin-top: 14px; background: var(--green); border-radius: var(--radius-sm); padding: 14px; text-align: center; font-weight: 700; }
-.valuecard__price strong { font-family: 'Anton'; font-size: 24px; margin-left: 8px; color: var(--blue); }
+.valuecard__price strong { font-size: inherit; margin-left: 6px; color: var(--blue); }
 
 /* ---- How it works ---- */
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -231,7 +231,7 @@ h1, h2, h3, .logo__word, .card__price, .step__num {
 .card--feature { background: var(--blue); border-color: var(--blue); position: relative; }
 .card--feature:hover { border-color: var(--green); }
 .card--dark { background: #101014; border: 1px dashed #3a3a44; }
-.card__tag { position: absolute; top: -12px; left: 22px; background: var(--green); color: var(--ink); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; padding: 5px 12px; border-radius: 999px; }
+.card__tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); text-align: center; background: var(--green); color: var(--ink); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; padding: 5px 12px; border-radius: 999px; }
 .card__price { font-family: 'Anton'; font-size: 34px; color: var(--green); margin-bottom: 4px; }
 .card--feature .card__price { color: #fff; }
 .card__price--sm { font-size: 24px; }
@@ -240,6 +240,12 @@ h1, h2, h3, .logo__word, .card__price, .step__num {
 .card--feature .card__desc { color: rgba(255,255,255,.9); }
 .card__foot { font-size: 12.5px; color: var(--green); font-weight: 600; margin: auto 0 18px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.12); line-height: 1.4; }
 .card--feature .card__foot { color: #eafae7; border-top-color: rgba(255,255,255,.25); }
+/* only the featured (₹75,000) card button: green with black text */
+.card--feature .btn { background: var(--green); border-color: var(--green); color: var(--ink); }
+.card--feature .btn:hover { background: #8adf7e; border-color: #8adf7e; color: var(--ink); }
+/* only the featured (₹75,000) card button is green */
+.card--feature .btn { background: var(--green); border-color: var(--green); color: var(--ink); }
+.card--feature .btn:hover { background: #8adf7e; border-color: #8adf7e; color: var(--ink); }
 
 /* ---- Proof ---- */
 .proof__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 34px; }
@@ -517,7 +523,7 @@ h1, h2, h3, .logo__word, .card__price, .step__num {
 .card > * { position: relative; z-index: 1; }
 .btn:active { transform: translateY(0) scale(.97); }
 .card__tag { animation: badgeFloat 2.6s ease-in-out infinite; }
-@keyframes badgeFloat { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-4px) } }
+@keyframes badgeFloat { 0%,100%{ transform: translateX(-50%) translateY(0) } 50%{ transform: translateX(-50%) translateY(-4px) } }
 
 /* 7 · submit celebration sparks */
 .spark { position: fixed; width: 9px; height: 9px; border-radius: 2px; z-index: 150; pointer-events: none; }
