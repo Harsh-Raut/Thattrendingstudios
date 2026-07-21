@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=16" />
+  <link rel="stylesheet" href="styles.css?v=31" />
 </head>
 <body>
 
@@ -74,6 +74,7 @@
     </div>
     <div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
     <div class="container hero__inner">
+      <div class="hero__content">
       <span class="eyebrow"><span class="dot"></span> That Trending Song</span>
       <h1 class="hero__title">
         Record your <span class="hl">trending&nbsp;song.</span><br />
@@ -111,6 +112,8 @@
         <div class="trust__sep"></div>
         <div class="trust__item"><strong data-count="4.9" data-decimals="1" data-suffix="★">4.9★</strong><span>artist rating</span></div>
       </div>
+      </div>
+      <img class="hero__photo" src="assets/hero-cutout.png" alt="Singer at the microphone" onerror="this.style.display='none'" />
     </div>
   </section>
 
@@ -144,7 +147,7 @@
           it back to you on real studio monitors. That's the moment everything changes.
         </p>
         <ul class="ticks">
-          <li>A real mic, a real room — free, no strings.</li>
+          <li>A real mic, a real room — no strings.</li>
           <li>Hear the "album version" of your own voice.</li>
           <li>Honest feedback from an engineer on your strengths.</li>
           <li>Walk out with a short clip + a plan for your first release.</li>
@@ -279,21 +282,14 @@
       </div>
 
       <div class="proof__grid">
-        <a class="thumb" href="https://www.youtube.com/@ThatTrendingSong" target="_blank" rel="noopener">
-          <span class="thumb__play">▶</span>
-          <span class="thumb__label">Latest release</span>
+        <a class="release" href="https://youtu.be/2etHf30ZFzo?si=VDN8jqLIAePZTpmP" target="_blank" rel="noopener">
+          <img class="release__img" src="assets/aadhi-raat.jpg" alt="Aadhi Raat — a release by Gauri" loading="lazy" />
+          <span class="release__play" aria-hidden="true">▶</span>
+          <span class="release__meta"><strong>Aadhi Raat</strong><small>Gauri · Latest release</small></span>
         </a>
-        <a class="thumb" href="https://www.youtube.com/@ThatTrendingSong" target="_blank" rel="noopener">
-          <span class="thumb__play">▶</span>
-          <span class="thumb__label">First-timer's debut</span>
-        </a>
-        <a class="thumb" href="https://www.youtube.com/@ThatTrendingSong" target="_blank" rel="noopener">
-          <span class="thumb__play">▶</span>
-          <span class="thumb__label">Outdoor shoot</span>
-        </a>
-        <a class="thumb" href="https://www.youtube.com/@ThatTrendingSong" target="_blank" rel="noopener">
-          <span class="thumb__play">▶</span>
-          <span class="thumb__label">Indie original</span>
+        <a class="release release--gradient" href="https://www.youtube.com/@ThatTrendingSong" target="_blank" rel="noopener">
+          <span class="release__play" aria-hidden="true">▶</span>
+          <span class="release__meta"><strong>Bas Tu Hi</strong><small>Gauri · New release</small></span>
         </a>
       </div>
       <div class="center">
@@ -348,31 +344,115 @@
         <span class="kicker">Real artists</span>
         <h2 class="section__title">They almost didn't come. Now they're released.</h2>
       </div>
-      <div class="tcards">
-        <figure class="tcard">
-          <div class="tcard__stars">★★★★★</div>
-          <blockquote>"I thought I'd embarrass myself. The moment they played my voice back, I actually teared up. Three weeks later my song was live."</blockquote>
-          <figcaption class="tcard__by">
-            <span class="tcard__avatar" style="--a:#4358F1">R</span>
-            <span><strong>Riya S.</strong><small>First song · Studio + Video</small></span>
-          </figcaption>
-        </figure>
-        <figure class="tcard">
-          <div class="tcard__stars">★★★★★</div>
-          <blockquote>"I'd released 20 covers to almost nobody. Here it wasn't just the sound — my song actually got an audience. That changed everything for me."</blockquote>
-          <figcaption class="tcard__by">
-            <span class="tcard__avatar" style="--a:#111111">A</span>
-            <span><strong>Arjun M.</strong><small>Indie artist · Outdoor Shoot</small></span>
-          </figcaption>
-        </figure>
-        <figure class="tcard">
-          <div class="tcard__stars">★★★★★</div>
-          <blockquote>"They held my hand through every step. I walked in a nervous student and walked out feeling like a real singer with a real release."</blockquote>
-          <figcaption class="tcard__by">
-            <span class="tcard__avatar" style="--a:#25a15b">N</span>
-            <span><strong>Neha K.</strong><small>First song · Voice Test → Release</small></span>
-          </figcaption>
-        </figure>
+      <div class="tcarousel">
+        <button class="tcarousel__btn tcarousel__btn--prev" type="button" aria-label="Previous reviews">‹</button>
+        <div class="tcards" id="tcards">
+          <figure class="tcard">
+            <div class="tcard__stars">★★★★★</div>
+            <blockquote>"I thought I'd embarrass myself. The moment they played my voice back, I actually teared up. Three weeks later my song was live."</blockquote>
+            <figcaption class="tcard__by">
+              <span class="tcard__avatar" style="--a:#4358F1">R</span>
+              <span><strong>Riya S.</strong><small>Pune · First song</small></span>
+            </figcaption>
+          </figure>
+          <figure class="tcard">
+            <div class="tcard__stars">★★★★★</div>
+            <blockquote>"I'd released 20 covers to almost nobody. Here it wasn't just the sound — my song actually got an audience. That changed everything for me."</blockquote>
+            <figcaption class="tcard__by">
+              <span class="tcard__avatar" style="--a:#111111">A</span>
+              <span><strong>Arjun M.</strong><small>Mumbai · Indie artist</small></span>
+            </figcaption>
+          </figure>
+          <figure class="tcard">
+            <div class="tcard__stars">★★★★★</div>
+            <blockquote>"They held my hand through every step. I walked in a nervous student and walked out feeling like a real singer with a real release."</blockquote>
+            <figcaption class="tcard__by">
+              <span class="tcard__avatar" style="--a:#25a15b">N</span>
+              <span><strong>Neha K.</strong><small>Nashik · First song</small></span>
+            </figcaption>
+          </figure>
+          <figure class="tcard">
+            <div class="tcard__stars">★★★★★</div>
+            <blockquote>"Honestly I only came for the free Voice Test, thoda darr ke. Hearing myself on those big speakers, I booked the recording the same evening."</blockquote>
+            <figcaption class="tcard__by">
+              <span class="tcard__avatar" style="--a:#4358F1">S</span>
+              <span><strong>Sanket P.</strong><small>Nagpur · Voice Test → Song</small></span>
+            </figcaption>
+          </figure>
+          <figure class="tcard">
+            <div class="tcard__stars">★★★★★</div>
+            <blockquote>"First time in a proper studio. The engineer told me exactly where my voice was strong. My parents actually cried when the video released."</blockquote>
+            <figcaption class="tcard__by">
+              <span class="tcard__avatar" style="--a:#111111">A</span>
+              <span><strong>Aishwarya J.</strong><small>Thane · First song</small></span>
+            </figcaption>
+          </figure>
+          <figure class="tcard">
+            <div class="tcard__stars">★★★★★</div>
+            <blockquote>"I write my own songs but never had the guts to release. They made it easy, and the channel already had people watching. 2k views on day one."</blockquote>
+            <figcaption class="tcard__by">
+              <span class="tcard__avatar" style="--a:#25a15b">O</span>
+              <span><strong>Omkar D.</strong><small>Kolhapur · Indie artist</small></span>
+            </figcaption>
+          </figure>
+          <figure class="tcard">
+            <div class="tcard__stars">★★★★★</div>
+            <blockquote>"Bilkul professional setup, no rush and no judgement. They recorded my Marathi single and it started getting shared in my college."</blockquote>
+            <figcaption class="tcard__by">
+              <span class="tcard__avatar" style="--a:#4358F1">S</span>
+              <span><strong>Sneha R.</strong><small>Aurangabad · Marathi single</small></span>
+            </figcaption>
+          </figure>
+          <figure class="tcard">
+            <div class="tcard__stars">★★★★★</div>
+            <blockquote>"The outdoor shoot was next level for the budget — full crew, proper edit. It looked like a real music video, not a phone reel."</blockquote>
+            <figcaption class="tcard__by">
+              <span class="tcard__avatar" style="--a:#111111">R</span>
+              <span><strong>Rohan K.</strong><small>Solapur · Outdoor shoot</small></span>
+            </figcaption>
+          </figure>
+          <figure class="tcard">
+            <div class="tcard__stars">★★★★★</div>
+            <blockquote>"I'm really shy and was so nervous. The team was so warm that by the end I forgot the mic was even there. My first song is out now."</blockquote>
+            <figcaption class="tcard__by">
+              <span class="tcard__avatar" style="--a:#25a15b">M</span>
+              <span><strong>Manasi B.</strong><small>Amravati · First song</small></span>
+            </figcaption>
+          </figure>
+          <figure class="tcard">
+            <div class="tcard__stars">★★★★★</div>
+            <blockquote>"Recording anywhere is easy — getting heard is the hard part. That's what brought me here. The release did more than my own uploads ever did."</blockquote>
+            <figcaption class="tcard__by">
+              <span class="tcard__avatar" style="--a:#4358F1">P</span>
+              <span><strong>Prasad V.</strong><small>Nagpur · Indie artist</small></span>
+            </figcaption>
+          </figure>
+          <figure class="tcard">
+            <div class="tcard__stars">★★★★★</div>
+            <blockquote>"Booked the Voice Test just to hear myself once. Ended up recording my debut. Best decision — my friends can't believe it's actually me."</blockquote>
+            <figcaption class="tcard__by">
+              <span class="tcard__avatar" style="--a:#111111">K</span>
+              <span><strong>Ketaki M.</strong><small>Sangli · First song</small></span>
+            </figcaption>
+          </figure>
+          <figure class="tcard">
+            <div class="tcard__stars">★★★★★</div>
+            <blockquote>"They didn't just record me — they guided the whole thing: song, video, release. Smooth from start to finish, and I felt taken care of."</blockquote>
+            <figcaption class="tcard__by">
+              <span class="tcard__avatar" style="--a:#25a15b">Y</span>
+              <span><strong>Yash T.</strong><small>Jalgaon · Song + Video</small></span>
+            </figcaption>
+          </figure>
+          <figure class="tcard">
+            <div class="tcard__stars">★★★★★</div>
+            <blockquote>"Never thought a small-town girl's song would be on a real channel. First release, and the comments genuinely made my whole week."</blockquote>
+            <figcaption class="tcard__by">
+              <span class="tcard__avatar" style="--a:#4358F1">P</span>
+              <span><strong>Pooja S.</strong><small>Ratnagiri · First release</small></span>
+            </figcaption>
+          </figure>
+        </div>
+        <button class="tcarousel__btn tcarousel__btn--next" type="button" aria-label="Next reviews">›</button>
       </div>
     </div>
   </section>
@@ -380,15 +460,24 @@
   <!-- ============ FAQ (#3) ============ -->
   <section class="section faq" id="faq">
     <div class="container faq__inner">
-      <div class="section__head">
-        <span class="kicker">Questions</span>
-        <h2 class="section__title">Everything you're wondering.</h2>
-        <p class="lead">Still unsure? That's normal. Here are the things new singers ask us most.</p>
+      <div class="faq__aside">
+        <div class="section__head">
+          <span class="kicker">Questions</span>
+          <h2 class="section__title">Everything you're wondering.</h2>
+          <p class="lead">Still unsure? That's normal. Here are the things new singers ask us most.</p>
+        </div>
+        <div class="faq__stillhave">
+          <p>Still have a question?</p>
+          <a href="https://wa.me/919359719200?text=Hi!%20I%20have%20a%20quick%20question" target="_blank" rel="noopener" class="btn btn--wa">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.11.07-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.37c.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.91 1.06.95 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.36-.23.6-.14.24.09 1.55.73 1.81.86.26.14.44.21.5.32.07.11.07.64-.17 1.32z"/></svg>
+            Ask us on WhatsApp
+          </a>
+        </div>
       </div>
 
       <div class="faq__list">
         <details class="faq__item" open>
-          <summary>Is the Voice Test <em>really</em> free?</summary>
+          <summary><span class="faq__q">Is the Voice Test <em>really</em> free?</span></summary>
           <div class="faq__a">Yes — completely. No payment, no card, no catch. You book a slot, come in, sing one short piece, and hear yourself on studio monitors. We only ask you to book so every artist gets our full attention.</div>
         </details>
         <details class="faq__item">
@@ -555,6 +644,6 @@
 
   <div class="grain" aria-hidden="true"></div>
 
-  <script src="script.js?v=12"></script>
+  <script src="script.js?v=17"></script>
 </body>
 </html>

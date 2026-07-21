@@ -352,4 +352,117 @@ document.querySelectorAll('.sec-fx__video').forEach((v) => {
   });
 });
 
+// ---------- Testimonials carousel ----------
+const tcards = document.getElementById('tcards');
+if (tcards) {
+  const step = (dir) => {
+    const card = tcards.querySelector('.tcard');
+    const amt = card ? card.getBoundingClientRect().width + 24 : 320;
+    tcards.scrollBy({ left: dir * amt, behavior: 'smooth' });
+  };
+  const prev = document.querySelector('.tcarousel__btn--prev');
+  const next = document.querySelector('.tcarousel__btn--next');
+  if (prev) prev.addEventListener('click', () => step(-1));
+  if (next) next.addEventListener('click', () => step(1));
+
+  if (!reduceMotion) {
+    let timer = setInterval(() => {
+      if (tcards.scrollLeft + tcards.clientWidth >= tcards.scrollWidth - 4) {
+        tcards.scrollTo({ left: 0, behavior: 'smooth' });
+      } else { step(1); }
+    }, 4500);
+    const stopAuto = () => { if (timer) { clearInterval(timer); timer = null; } };
+    ['pointerdown', 'wheel', 'touchstart', 'mouseenter'].forEach((ev) =>
+      tcards.addEventListener(ev, stopAuto, { passive: true }));
+    [prev, next].forEach((b) => b && b.addEventListener('click', stopAuto));
+  }
+}
+
+/* ============================================================
+   Proof section — auto-populate from the YouTube channel (JSONP)
+   Paste the youtube-fetcher Apps Script /exec URL below.
+   ============================================================ */
+const YOUTUBE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwhM7ZcGkLHjxax3J5yrdteoiYIKUhcHATlQ3-Pgeo8H5KvCqFZKiWntlMZDYn__y1e/exec';
+const proofGrid = document.querySelector('.proof__grid');
+
+const ytFmtDate = (iso) => {
+  const d = new Date(iso);
+  return isNaN(d) ? '' : d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+};
+const ytThumb = (v) => v.thumb || ('https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg');
+
+// Display-title overrides, keyed by YouTube video id.
+// Use when the video's title on YouTube isn't what you want shown on the site.
+const YT_TITLE_OVERRIDES = {
+  'CffAeQuKF9o': 'Aadhi Raat'
+};
+const ytTitle = (v) => YT_TITLE_OVERRIDES[v.id] || v.title;
+
+const ytReleaseCard = (v, opts) => {
+  opts = opts || {};
+  const a = document.createElement('a');
+  a.className = 'release' + (opts.featured ? ' release--featured' : '') + (opts.upcoming ? ' release--upcoming' : '');
+  a.href = 'https://www.youtube.com/watch?v=' + v.id;
+  a.target = '_blank'; a.rel = 'noopener';
+  const img = document.createElement('img');
+  img.className = 'release__img'; img.src = ytThumb(v); img.alt = ytTitle(v); img.loading = 'lazy';
+  a.appendChild(img);
+  if (opts.badge) {
+    const b = document.createElement('span'); b.className = 'release__badge'; b.textContent = opts.badge; a.appendChild(b);
+  }
+  const play = document.createElement('span');
+  play.className = 'release__play'; play.setAttribute('aria-hidden', 'true'); play.textContent = '▶';
+  a.appendChild(play);
+  const meta = document.createElement('span'); meta.className = 'release__meta';
+  const strong = document.createElement('strong'); strong.textContent = ytTitle(v);
+  const small = document.createElement('small'); small.textContent = opts.sub || '';
+  meta.appendChild(strong); meta.appendChild(small); a.appendChild(meta);
+  return a;
+};
+
+// Global JSONP callback the Apps Script calls back into
+window.__ttsYouTube = (data) => {
+  if (!proofGrid || !data || (!data.latest && !data.previous && !data.upcoming)) return; // keep static fallback
+  const frag = document.createDocumentFragment();
+  if (data.latest) {
+    frag.appendChild(ytReleaseCard(data.latest, { featured: true, sub: 'Latest release · ' + ytFmtDate(data.latest.date) }));
+  }
+  if (data.previous) {
+    frag.appendChild(ytReleaseCard(data.previous, { sub: 'Previous release · ' + ytFmtDate(data.previous.date) }));
+  }
+  if (data.upcoming) {
+    const when = ytFmtDate(data.upcoming.premiereAt);
+    const isPrem = data.upcoming.isPremiere;
+    const badge = when ? (isPrem ? 'Premieres ' + when : 'Releasing ' + when) : 'Coming soon';
+    const card = ytReleaseCard(data.upcoming, { upcoming: true, badge: badge, sub: 'Next release' });
+    // a scheduled (non-Premiere) upload is still private — send people to the
+    // channel to subscribe instead of a watch page they can't open yet
+    if (!isPrem) card.href = 'https://www.youtube.com/@ThatTrendingSong?sub_confirmation=1';
+    frag.appendChild(card);
+  }
+  else {
+    // no Premiere scheduled → fill the third slot with a Subscribe CTA
+    const sub = document.createElement('a');
+    sub.className = 'release release--subscribe';
+    sub.href = 'https://www.youtube.com/@ThatTrendingSong?sub_confirmation=1';
+    sub.target = '_blank'; sub.rel = 'noopener';
+    const m = document.createElement('span'); m.className = 'release__meta';
+    const k = document.createElement('span'); k.className = 'release__kicker'; k.textContent = 'Never miss one';
+    const st = document.createElement('strong'); st.textContent = 'Subscribe on YouTube';
+    const sm = document.createElement('small'); sm.textContent = 'Get every new song the day it drops →';
+    m.appendChild(k); m.appendChild(st); m.appendChild(sm); sub.appendChild(m);
+    frag.appendChild(sub);
+  }
+  proofGrid.innerHTML = '';
+  proofGrid.className = 'proof__grid proof__grid--live';
+  proofGrid.appendChild(frag);
+};
+
+if (proofGrid && YOUTUBE_SCRIPT_URL && YOUTUBE_SCRIPT_URL.indexOf('YOUR_') !== 0) {
+  const s = document.createElement('script');
+  s.src = YOUTUBE_SCRIPT_URL + (YOUTUBE_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?') + 'callback=__ttsYouTube';
+  s.async = true;
+  document.body.appendChild(s);
+}
+
 })();
