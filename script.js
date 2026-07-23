@@ -153,11 +153,18 @@ form.addEventListener('submit', async (e) => {
       mode: 'no-cors',
       body: new URLSearchParams(new FormData(form)),
     });
+    // swap the form fields for the thank-you panel (Option A)
+    const thanksName = document.getElementById('thanksName');
+    if (thanksName) thanksName.textContent = (name || '').split(' ')[0] || 'there';
+    const progress = form.querySelector('.form__progress');
+    if (progress) progress.classList.add('hidden');
+    step1.classList.add('hidden');
+    step2.classList.add('hidden');
+    const thanks = document.getElementById('formThanks');
+    if (thanks) thanks.classList.remove('hidden');
+    setStatus('', '');
     form.reset();
     updateCtaLabel();
-    showStep(1);
-    setStatus('🎉 Got it! We\'ll message you on WhatsApp within 24 hours to lock your slot.', 'ok');
-    successWa.classList.remove('hidden'); // offer instant WhatsApp handoff (#4)
     celebrate(); // submit celebration (#7)
   } catch (err) {
     setStatus('Network error — please WhatsApp us instead so we don\'t miss you.', 'err');

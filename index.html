@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=31" />
+  <link rel="stylesheet" href="styles.css?v=33" />
 </head>
 <body>
 
@@ -588,6 +588,19 @@
           <a href="https://wa.me/919359719200?text=Hi!%20I'd%20like%20to%20book%20a%20free%20Voice%20Test" target="_blank" rel="noopener" class="btn btn--wa btn--full hidden" id="successWa">Continue on WhatsApp →</a>
           <p class="form__fine">By submitting you agree we can contact you about your enquiry.</p>
         </div>
+
+        <!-- Thank-you panel (replaces the form fields after a successful submit) -->
+        <div class="form__thanks hidden" id="formThanks" role="status" aria-live="polite">
+          <span class="form__thanks-icon" aria-hidden="true">✅</span>
+          <h3 class="form__thanks-title">Thanks, <span id="thanksName">there</span>! Your request is in.</h3>
+          <p class="form__thanks-text">We'll message you on <strong>WhatsApp within 24 hours</strong> to lock in your slot.</p>
+          <p class="form__thanks-text form__thanks-muted">We've also sent a confirmation to your email 📩</p>
+          <a href="https://wa.me/919359719200?text=Hi!%20I%20just%20submitted%20the%20form%20on%20your%20website" target="_blank" rel="noopener" class="btn btn--wa btn--lg btn--full">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.11.07-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.37c.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.91 1.06.95 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.36-.23.6-.14.24.09 1.55.73 1.81.86.26.14.44.21.5.32.07.11.07.64-.17 1.32z"/></svg>
+            Message us on WhatsApp
+          </a>
+          <p class="form__reassure">✨ No experience needed. Just come sing.</p>
+        </div>
       </form>
     </div>
   </section>
@@ -644,6 +657,6 @@
 
   <div class="grain" aria-hidden="true"></div>
 
-  <script src="script.js?v=17"></script>
+  <script src="script.js?v=18"></script>
 </body>
 </html>
