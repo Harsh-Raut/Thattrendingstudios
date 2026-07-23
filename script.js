@@ -163,6 +163,12 @@ form.addEventListener('submit', async (e) => {
     const thanks = document.getElementById('formThanks');
     if (thanks) thanks.classList.remove('hidden');
     setStatus('', '');
+    // GA4 conversion: a booking enquiry was submitted
+    if (typeof gtag === 'function') {
+      gtag('event', 'generate_lead', {
+        service: (typeof service !== 'undefined' && service) || (form.service && form.service.value) || '',
+      });
+    }
     form.reset();
     updateCtaLabel();
     celebrate(); // submit celebration (#7)
