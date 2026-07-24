@@ -169,6 +169,12 @@ form.addEventListener('submit', async (e) => {
         service: (typeof service !== 'undefined' && service) || (form.service && form.service.value) || '',
       });
     }
+    // Meta Pixel conversion: a booking enquiry was submitted
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', {
+        content_name: (typeof service !== 'undefined' && service) || (form.service && form.service.value) || '',
+      });
+    }
     form.reset();
     updateCtaLabel();
     celebrate(); // submit celebration (#7)
